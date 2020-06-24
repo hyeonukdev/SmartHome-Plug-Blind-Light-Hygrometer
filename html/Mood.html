@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> MOOD LIGHT Control </title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="section row">
+        <div class="col s10">
+            <span class="flow-text">
+                Mood Light
+                <a href="../index.html"><img src="../img/home2.png"></a>
+                <a href="../html/Inner.html"><img src="../img/InnerRoom2.png"></a>
+            </span>
+            <div id="container">
+                <div class="card-image" align="middle">
+                    <img src="../img/neopixel_1.png" width="500" height="400" title="Mood Light">
+
+                </div>
+                
+                <div id="container" align="middle">
+
+                    <h1>Mood Light Control</h1>
+               
+                  <h3>전원</h3>
+                    <button id="11" class="led"style="width:140;heigh=100;font-size:2em; border-radius:0.5em;border-radius:0.5em; padding:10px 33px; margin:10px 10px">on</button> <!-- button for pin 11 -->
+                    <button id="10" class="led" style="width:140;heigh=100;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px">off</button> 
+             <hr>
+                    <div class="section row">
+                        <span class="flow-text">
+                            <h3>분위기</h3>
+                            <button id="12" class="led" style="background: #ef332d;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px color: #fff;"> 정열</button> <!-- button for pin 12 -->
+                            <button id="13" class="led" style="background: #00FF00;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px color: #fff">진정</button> <!-- button for pin 13 -->
+                            <button id="14" class="led" style="background: #75bbfd;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px color:#120A2A;">청량</button>
+                  </span>
+                     
+                     <div class="section row">
+                                <span class="flow-text"> 
+                                    <button id="15" class="led" style="background: #FFFF00 ;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px color: #fff;">낙천</button> 
+                                    <button id="16" class="led" style="background: #FF00FF;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px color: #fff;">환상</button> 
+                                    <button id="17" class="led" style="background: #FFFFFF;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:10px 10px color: #fff;">공허</button>
+                                  </span>
+                     </div>
+                     <div class="section row">
+                     <hr>
+                                <span class="flow-text"> 
+                              <h3>밝 기</h3>
+                                <button id="18" class="led" style="width:140;heigh=100;background: #A4A4A4;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:align:center;5px 5px color: #fff;"> 30</button> 
+                                <button id="19" class="led" style="width:140;heigh=100;background: #D8D8D8;font-size:2em; border-radius:0.5em; padding:10px 33px; align:center; margin:5px 5px color: #fff;"> 50</button> 
+                                <button id="20" class="led" style="width:140;heigh=100;background: #FAFAFA;font-size:2em; border-radius:0.5em; padding:10px 33px; margin:5px 5px color: #000000;">100</button>      
+                     </div>  
+                        </div> 
+                     
+                            
+                       
+                      <script src="../js/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $(".led").click(function() {
+                                        var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+                                        // send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+                                        $.get("http://192.168.43.222:80/", {
+                                            pin: p
+                                        }); // execute get request
+                                    });
+                                });
+                            </script>
+
+</body>
+
+</html>

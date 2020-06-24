@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Blind</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/materialize.css">
+</head>
+<body>
+	<div class="container">
+		<div class="section row"> <!-- Header Section -->
+			<div class="col s10">
+				<span class="flow-text">
+				Blind Control	
+				<a href="../index.html"><img src="../img/main.png"></a> 
+				<a href="../main.html"><img src="../img/home2.png"></a> 
+				<a href="../html/Inner.html"><img src="../img/InnerRoom2.png"></a>
+				</span>
+				</br>
+			By 김준혁 
+			</div>
+		</div>
+
+
+			
+		<div class="section row" align="middle"> 
+			<div class="col s10">
+				<div class="card-image" align="middle">
+					<img src="../img/Blind_Half_Down.png">
+				</div>
+					<font size="7">
+						<p style="line-height: 0;">Inner Room Blind</p>
+					</font>
+				<div class="card-content">
+					
+				
+					</font>
+					
+				</div>
+
+
+			</div>
+			<div class="col s10">
+				<button id="12" class="Blind" style="background:white; font-size:2em; border-radius:0.5em; padding:10px 25px; margin:20px 10px" onclick="onoff1(this)">DOWN</button> 
+				<button id="10" class="Blind" style="background:white; font-size:2em; border-radius:0.5em; padding:10px 20px; margin:0px 10px" onclick="onoff3(this)">STOP</button> 
+				<button id="11" class="Blind" style="background:white; font-size:2em; border-radius:0.5em; padding:10px 25px; margin:0px 10px" onclick="onoff2(this)">UP</button> 
+				
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="divider"></div>
+		
+		<div class="section row"> 
+			<div class="col s10">
+				<h5>예약설정</h5>
+				<details>
+            				<summary></summary>
+            				<p>블라인드 동작 시간을 설정할 수 있습니다.</p>          				
+            			</details>
+			</div>
+		</div>
+		
+		<div class="divider"></div>
+
+		<div class="section row"> 
+			<div class="col s10">
+				<h5>사용이력</h5>
+				<details>
+            				<summary></summary>
+            				<p>최근 사용 시간 : 2018. 12. 06. 14:00</p>  				
+            			</details>				
+			</div>
+		</div>		
+
+		<div class="divider"></div>
+
+		<div class="section row"> 
+			<div class="col s10">
+				<h5>상세정보</h5>
+				<details>
+            				<summary></summary>
+					<p>모 델 명: 창앤롤 롤스크린 블라인드</p>
+					<p>종     류 : 롤스크린</p>
+					<p>설치 위치 : 안방</p>
+					<p>등록 일자 : 2018. 09. 11</p>
+            			</details>					
+			</div>
+		</div>		
+	</div>
+		
+		
+			<script src="../js/jquery.min.js"></script>
+			
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$(".Blind").click(function(){
+						var p = $(this).attr('id'); 
+						$.get("http://192.168.43.34:80/", {pin:p}); // execute get request
+					});
+				});
+			</script> 
+			<script> 
+				flag1=true; flag2=true; flag3=true;
+				function onoff1(obj) {
+					if(flag1) {
+						obj.style.background = "gray";
+						flag1=false;		
+						document.getElementById("11").style.background = "white";								document.getElementById("10").style.background = "white";		
+						flag2=true;
+						flag3=true;	
+					} else {
+						obj.style.background = "white";
+						flag1=true;
+					}					
+				}
+				
+				function onoff2(obj) {
+					if(flag2) {
+						obj.style.background = "gray";
+						flag2=false;
+						document.getElementById("12").style.background = "white";								document.getElementById("10").style.background = "white";		
+						flag1=true;
+						flag3=true;
+					} else {
+						obj.style.background = "white";
+						flag2=true;
+					}					
+				}
+				
+				function onoff3(obj) {
+					if(flag3) {
+						obj.style.background = "gray";
+						flag3=false;
+						document.getElementById("12").style.background = "white";								document.getElementById("11").style.background = "white";		
+						flag1=true;
+						flag2=true;
+					} else {
+						obj.style.background = "white";
+						flag3=true;
+					}					
+				}
+			</script>
+</body>
+</html>

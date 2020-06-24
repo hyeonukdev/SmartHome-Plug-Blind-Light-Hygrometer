@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Multitap</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/materialize.css">
+</head>
+<body>
+	<div class="container">
+		<div class="section row"> <!-- Header Section -->
+			<div class="col s10">
+				<span class="flow-text">
+				Multitap Control
+				<a href="../index.html"><img src="../img/main.png"></a> 
+				<a href="../main.html"><img src="../img/home2.png"></a> 
+				<a href="../html/Inner.html"><img src="../img/InnerRoom2.png"></a>
+				</span>
+				</br>
+			By 강현욱 
+			</div>
+		</div>
+		<div class="divider"></div>
+
+
+		<div class="divider"></div>
+		<!--내용추가하기! -->
+		<div>
+		<table border="0" width="100%">
+		<tr>
+			<th>플러그1</th>
+			<th>플러그2</th>
+			<th>플러그3</th>
+		</tr>
+		<tr>
+			<td width="33%"><button id="10" class="Relay" onclick="onoff1(this)">
+				<img class="btn_img_plug" src="../img/plug.png"></button></th>
+			<td width="33%"><button id="11" class="Relay" onclick="onoff2(this)">
+				<img class="btn_img_plug" src="../img/plug.png"></button></th>
+			<td width="33%"><button id="12" class="Relay" onclick="onoff3(this)">
+				<img class="btn_img_plug" src="../img/plug.png"></button></th>
+		</tr>
+		<tr>
+			<td><button id="010" class="Relay" style="background-color:red">첫 번째 콘센트 ON/OFF</button></td>
+			<td><button id="011" class="Relay" style="background-color:red">두 번째 콘센트 ON/OFF</button></td>
+			<td><button id="012" class="Relay">세 번째 콘센트 ON/OFF</button></td>
+		</tr>
+		</table>
+		<a href="https://thingspeak.com/channels/632534/" target="_blank">전류량 Chart 보기</a>
+		</div>
+		<div class="divider"></div>
+
+	<h2><span id="clock"></span> </h2>
+    <button onclick="send_go2()">현재시간보기</button>
+	
+	<div class="section row"> 
+			<div class="col s10">
+				<h5>예약설정</h5>
+				
+            				<p>멀티탭의 동작시간을 설정할 수 있습니다.</p>
+							
+			</div>
+		</div>
+		
+		<div class="divider"></div>
+		<div class="divider"></div>
+		 
+		<div class="section row"> 
+			<div class="col s10">
+				<h5>사용이력</h5>
+				
+            				
+            				플러그1 2018.12.06 14:00 ~ 17:00<br>
+							플러그2 2018.12.06 14:10 ~ 16:30<br>
+							플러그3 2018.12.05 00:00 ~ 07:00<br>		
+						
+			</div
+		</div>	
+        </div>			
+		<div class="divider"></div>	
+		<div class="divider"></div>
+		
+		<div class="section row"> 
+			<div class="col s10">
+				<h5>상세정보</h5>
+				
+					<p>모 델 명: 멀티탭</p>
+					<p>종     류 : 3구 220V</p>
+					<p>설치 위치 : 안방</p>
+					<p>등록 일자 : 2018. 09. 11</p>					
+			</div>
+		</div>		
+		<div class="divider"></div>
+		
+
+		<script src="../js/jquery.min.js"></script>
+			<script type="text/javascript">
+		$(document).ready(function(){
+			$(".Relay").click(function(){
+				var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)				
+				$.get("http://192.168.43.115:80/", {pin:p}); // execute get request
+			});
+		});
+		
+				flag1=true; flag2=true; flag3=true;
+				function onoff1(obj) {
+					if(flag1) {
+						document.getElementById("010").style.background = "gray";
+						flag1=false;		
+							
+					} else {
+						document.getElementById("010").style.background = "red";
+						flag1=true;
+					}					
+				}
+				
+				function onoff2(obj) {
+					if(flag2) {
+						document.getElementById("011").style.background = "gray";
+						flag2=false;		
+							
+					} else {
+						document.getElementById("011").style.background = "red";
+						flag2=true;
+					}							
+				}
+				
+				function onoff3(obj) {
+					if(flag3) {
+						document.getElementById("012").style.background = "red";
+						flag3=false;
+						
+					} else {
+						document.getElementById("012").style.background = "gray";
+						flag3=true;
+					}					
+				}		
+		</script>
+	<script>
+	function send_go2() {
+        var now = new Date();
+        var s = now.getFullYear()+"년 " + (now.getMonth()+1)+"월 "+ now.getDate()+"일  "+
+                now.getHours()+" : " + now.getMinutes()+" : "+now.getSeconds(); 
+        document.getElementById("clock").innerHTML=s;
+        
+        setTimeout("send_go2()", 1000);
+    }
+	</script>
+</body>
+</html>
